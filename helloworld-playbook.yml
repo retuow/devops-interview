@@ -1,0 +1,23 @@
+---
+
+- name: Build and run helloworld Docker image
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Build docker image 
+    community.docker.docker_image:
+      name: helloworld
+      build:
+        path: /projects/helloworld
+      source: build
+      tag: latest
+
+  - name: Start helloworld container
+    community.docker.docker_container:
+      name: helloworld
+      image: helloworld:latest
+      ports:
+        - 8080:8080
+      state: started
+
