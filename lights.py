@@ -16,4 +16,4 @@ if __name__ == '__main__':
     sunrise = datetime.strptime(data['results']['sunrise'], '%I:%M:%S %p').time()
     sunset = datetime.strptime(data['results']['sunset'], '%I:%M:%S %p').time()
     now = datetime.utcnow().time()
-    print("OFF") if sunrise < now < sunset else print("ON")
+    print('OFF') if sunrise < now < sunset else print('ON')
