@@ -1,0 +1,23 @@
+---
+
+- name: Update system settings
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Set systemwide aliases
+    ansible.builtin.blockinfile:
+      path: /etc/profile.d/docker-aliases.sh
+      create: true
+      block: |
+        alias d='docker'
+        alias dc='docker-compose'
+
+  - name: Create topsecret secret
+    ansible.builtin.lineinfile:
+      path: /etc/topsecret.txt
+      create: true
+      line: t0ps3cr3t
+      owner: root
+      group: root
+      mode: '0400'
